@@ -1,7 +1,7 @@
 {
   "name": "cursonodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "una app",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
