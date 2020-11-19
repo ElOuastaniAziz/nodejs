@@ -103,9 +103,12 @@ app.delete('/delete',(req,res)=>{
 
 
 
-app.listen(3000,function(){
+/*app.listen(3000,function(){
     console.log('Server on port 3000'.blue);
-})
+})*/
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 
 // para evitar apagar y enecender npm i nodemon -D, cada vez que guardamos lo reeinicia automaticamente.
 //Sino usamos el -D se instlará con la depenencias de componentes, pero asi como lo tenemos se intalará en
