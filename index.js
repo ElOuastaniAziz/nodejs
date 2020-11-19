@@ -49,7 +49,7 @@ app.use(morgan('tiny')) // con esto http://localhost:3000/ no sadrá este result
 //Instalo morgan npm i morgan , este me da más información de las peticiones.
 
 //Middeleware de express
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 app.all('/usuario',(req,res,next)=>{//posa por aquí Antes de ir al post de usuario de arriba
     console.log('pasa por aquí'); //
