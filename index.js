@@ -34,28 +34,28 @@ const bd=[{
 
 
 //Un middelware de todos las peticiones que llegan al servidor
-function logger(req,res,next){
-    console.log('Request received:',req.protocol,' host',req.get('host'),
-        req.originalUrl);
-    next();
-}
+// function logger(req,res,next){
+//     console.log('Request received:',req.protocol,' host',req.get('host'),
+//         req.originalUrl);
+//     next();
+// }
 
 app.use(express.json()); //para que entienda json
 
 //app.use(logger); //asi usamos la funcion middelware
 
-app.use(morgan('tiny')) // con esto http://localhost:3000/ no sadrá este resultado //GET / 304 - - 6.030 ms
+//app.use(morgan('tiny')) // con esto http://localhost:3000/ no sadrá este resultado //GET / 304 - - 6.030 ms
 
 //Instalo morgan npm i morgan , este me da más información de las peticiones.
 
 //Middeleware de express
 //app.use(express.static('public'));
 
-app.all('/usuario',(req,res,next)=>{//posa por aquí Antes de ir al post de usuario de arriba
-    console.log('pasa por aquí'); //
-    //res.send("finalizado");
-    next(); 
-})
+// app.all('/usuario',(req,res,next)=>{//posa por aquí Antes de ir al post de usuario de arriba
+//     console.log('pasa por aquí'); //
+//     //res.send("finalizado");
+//     next(); 
+// })
 
 
 
@@ -106,12 +106,15 @@ app.delete('/delete',(req,res)=>{
 /*app.listen(3000,function(){
     console.log('Server on port 3000'.blue);
 })*/
-const PORT = process.env.PORT || '8080';
-/*app.listen(process.env.PORT || 5000, function(){
+//const PORT = process.env.PORT || '8080';
+app.listen(process.env.PORT || 5000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-  });*/
+  });
 
-  app.set("port",PORT);
+  //app.set("port",PORT);
+  /*app.listen(PORT,function(){
+      console.log('Server on port 8080');
+  })*/
 
 // para evitar apagar y enecender npm i nodemon -D, cada vez que guardamos lo reeinicia automaticamente.
 //Sino usamos el -D se instlará con la depenencias de componentes, pero asi como lo tenemos se intalará en
