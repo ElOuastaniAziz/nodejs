@@ -20,7 +20,7 @@ http.createServer(function (req,res) {
   //Express es un framework para crear servidores sin hacerlo todo a mano y desde cero
 
 const express = require("express");
-const colors = require('colors');
+//const colors = require('colors');
 
 const morgan =require("morgan");
 
@@ -106,9 +106,12 @@ app.delete('/delete',(req,res)=>{
 /*app.listen(3000,function(){
     console.log('Server on port 3000'.blue);
 })*/
-app.listen(process.env.PORT || 5000, function(){
+const PORT = process.env.PORT || '8080';
+/*app.listen(process.env.PORT || 5000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-  });
+  });*/
+
+  app.set("port",PORT);
 
 // para evitar apagar y enecender npm i nodemon -D, cada vez que guardamos lo reeinicia automaticamente.
 //Sino usamos el -D se instlará con la depenencias de componentes, pero asi como lo tenemos se intalará en
