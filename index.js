@@ -21,6 +21,7 @@ http.createServer(function (req,res) {
 
 const express = require("express");
 //const colors = require('colors');
+const os = require('os');
 
 const morgan =require("morgan");
 
@@ -42,6 +43,8 @@ const bd=[{
 
 app.use(express.json()); //para que entienda json
 
+app.set('nombreApp','Aplicación personal de Abdelaziz')
+
 //app.use(logger); //asi usamos la funcion middelware
 
 //app.use(morgan('tiny')) // con esto http://localhost:3000/ no sadrá este resultado //GET / 304 - - 6.030 ms
@@ -61,7 +64,8 @@ app.use(express.json()); //para que entienda json
 
 
 app.get('/',function(req,res){
-    res.send('<h1 style="color:red">Node con express</h1>');
+    //res.send('<h1 style="color:red"></h1>'+os.platform());
+    res.send('my ip '+JSON.stringify(os.networkInterfaces()));
     res.end();
 })
 
@@ -100,6 +104,11 @@ app.delete('/delete',(req,res)=>{
     res.end();
 });
 
+app.get('/vista',(req,res)=>{
+    console.log(os.hostname())
+    const data=[{nombre:'Juan'},{nombre:'Maria'},{nombre:'Sara'},{userhost:os.hostname()}]
+    res.render('index.ejs' ,{ personas:data});
+});
 
 
 
@@ -108,6 +117,7 @@ app.delete('/delete',(req,res)=>{
 })*/
 //const PORT = process.env.PORT || '8080';
 app.listen(process.env.PORT || 5000, function(){
+    console.log(app.get('nombreApp'));
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
 

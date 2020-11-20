@@ -5,17 +5,18 @@
   "main": "index.js",
   "engines": {
     "node": "14.11.0"
-    },
-    "keywords": [
-      "example",
-      "heroku"
-    ],
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "scripts": {
     "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   },
