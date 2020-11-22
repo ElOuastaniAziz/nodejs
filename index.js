@@ -62,14 +62,32 @@ http.createServer(function (req,res) {
   // })
   
   
-  
+  const unirest = require("unirest");
   
   app.get('/',function(req,res){
       contador++;
-      console.log('Usuario numero: ',contador+' con IP: ', 
+      
+
+
+      //geo
+         var apiCall = unirest("GET",
+            "https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/"
+        );
+        apiCall.headers({
+            "x-rapidapi-host": "ip-geolocation-ipwhois-io.p.rapidapi.com",
+            "x-rapidapi-key": "srclZqaa9imshAk9Xzz55u27oltLp1SqdiFjsnmva9PTpf2j3f"
+        });
+        apiCall.end(function(result) {
+            if (res.error) throw new Error(result.error);
+            console.log(result.body);
+            res.send(result.body);
+        });
+
+    console.log('Usuario numero: ',contador+' con IP: ', 
       os.networkInterfaces().eth0[0].address,'\n');
       res.send('<h1 style="color:red">'+os.platform()+'</h1>');
       res.end();
+
   })
   
   
