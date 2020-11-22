@@ -64,8 +64,7 @@ app.set('nombreApp','Aplicación personal de Abdelaziz')
 
 
 app.get('/',function(req,res){
-    //res.send('<h1 style="color:red"></h1>'+os.platform());
-    res.send('my ip '+JSON.stringify(os.networkInterfaces()));
+    res.send('<h1 style="color:red">'+os.platform()+'</h1>');
     res.end();
 })
 
