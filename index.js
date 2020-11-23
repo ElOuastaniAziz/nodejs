@@ -3,6 +3,9 @@
     El servidor con node maneja las conexiones de manera asíncrona.
 */
 
+const bd = require('./bd');
+
+
 /*const { REFUSED } = require('dns');
 const http= require('http');
 
@@ -28,10 +31,12 @@ http.createServer(function (req,res) {
   
   const app = express();
   
-  const bd=[{
+  /*const bd=[{
       nombre:'Juan',
       apellidos:'Fernandez'
-  }]
+  }]*/
+
+  bd.connection();
   
   
   
@@ -62,14 +67,12 @@ http.createServer(function (req,res) {
   // })
   
   
+  
   const unirest = require("unirest");
   
   app.get('/',function(req,res){
       contador++;
-      
-
-
-      //geo
+        //geo
          var apiCall = unirest("GET",
             "https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/"
         );
