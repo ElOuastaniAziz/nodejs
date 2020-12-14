@@ -3,7 +3,7 @@
     El servidor con node maneja las conexiones de manera asíncrona.
 */
 
-const bd = require('./bd');
+//const bd = require('./bd');
 
 
 /*const { REFUSED } = require('dns');
@@ -30,13 +30,20 @@ http.createServer(function (req,res) {
   const morgan =require("morgan");
   
   const app = express();
+  const mongoose = require('mongoose')
+
+  //para hacer fetch desde cualquier dominio
+    const cors = require('cors');
   
   /*const bd=[{
       nombre:'Juan',
       apellidos:'Fernandez'
   }]*/
 
-  bd.connection();
+  //bd.connection();
+
+  mongoose.connect("mongodb+srv://abdel:pormar20@cluster0.vrkig.mongodb.net/nodeexpress?retryWrites=true&w=majority",
+  ()=>console.log('Conectado to BD'))
   
   
   
@@ -47,6 +54,7 @@ http.createServer(function (req,res) {
   //     next();
   // }
   
+  app.use(cors());
   app.use(express.json()); //para que entienda json
   
   app.set('nombreApp','Aplicación personal de Abdelaziz')
@@ -106,6 +114,8 @@ http.createServer(function (req,res) {
       console.log(bd)
       res.end();
   });
+
+  //{useNewUrlParser:true}
   
   app.post('/adduser/:id',(req,res)=>{  //PostMan: http://localhost:3000/adduser/200
       console.log(req.body) //{ nombre: 'Mario', apellidos: 'PacMan' }
@@ -113,6 +123,7 @@ http.createServer(function (req,res) {
        res.end();
    });
   
+   //require('dotenv/config')
    
   app.post('/post',(req,res)=>{
       res.send('<h2 style="color:blue">Post/h2>');
@@ -133,6 +144,13 @@ http.createServer(function (req,res) {
       const data=[{nombre:'Juan'},{nombre:'Maria'},{nombre:'Sara'},{userhost:os.hostname()}]
       res.render('index.ejs' ,{ personas:data});
   });
+
+
+  //Importamos  middeleware
+  const postsRoute = require('./routes/posts');
+
+  app.use('/posts',postsRoute);
+
   
   
   
